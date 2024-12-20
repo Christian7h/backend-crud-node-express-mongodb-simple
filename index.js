@@ -1,3 +1,6 @@
+const dotenv = require('dotenv'); // Importar dotenv para manejar las variables de entorno
+dotenv.config(); // Cargar las variables de entorno desde el archivo .env
+
 const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');  
@@ -14,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Hello from Node API Server');
 });
 
-mongoose.connect("mongodb+srv://admin:er7hdSFGxvPwYseC@backenddb.1d1yx.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB")
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log('Connected to MongoDB');
     app.listen(3000, () => {
